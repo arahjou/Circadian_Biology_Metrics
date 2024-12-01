@@ -14,6 +14,7 @@ The average activity level during the most active 10 hours of the day, reflectin
 The average activity level during the least active 5 hours of the day, typically a measure of rest or sleep quality.
 
 ### Composite Phase Deviation - CPD
+"Based on a single time series, our Composite Phase Deviation method unveils distinct, subject- and schedule-specific geometries (‘islands and pancakes’) that illustrate how modern work times interfere with sleep [Reference](https://www.nature.com/articles/srep38601)".
 
 ### Interdaily Stability - IS
 A measure of the stability of an individual's circadian rhythm from day to day [Reference](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php).
