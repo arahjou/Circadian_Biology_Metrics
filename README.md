@@ -14,10 +14,10 @@ Circadian Biology Metrics (CBM) is a repository designed to consolidate essentia
 ### Composite Phase Deviation - CPD
 
 ### Interdaily Stability - IS
-A measure of the stability of an individual's circadian rhythm from day to day.
+A measure of the stability of an individual's circadian rhythm from day to day [Reference](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php).
 
 ### Intradaily Variability - IV
-A measure of the fragmentation of the circadian rhythm within a single day.
+A measure of the fragmentation of the circadian rhythm within a single day [Reference](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php).
 
 ### Circadian Rhythm Index - CRI
 The metric calculated from IV and IS in circadian biology is called the Circadian Rhythm Index (CRI).
