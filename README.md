@@ -41,4 +41,4 @@ A measure of the regularity of social rhythms, which can influence circadian rhy
 
 ### Relative Amplitude - RA
 A measure of the difference between the most and least active periods, indicating the robustness of the circadian rhythm.
-[Reference]([https://link-url-here.org](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php))
+[Reference](https://link-url-here.org](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php)
