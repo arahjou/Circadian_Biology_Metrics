@@ -40,6 +40,8 @@ CRI is a useful tool for assessing circadian rhythm health and identifying indiv
 A measure of the regularity of social rhythms, which can influence circadian rhythms and overall health.
 
 ### Cosinor
+"Historically, the single cosinor was developed to analyze short and sparse data series [2, 30–32]. Periodograms and classical spectra originally used in chronobiology [33, 34] required the data to be equidistant and to cover more than a single cycle. Whereas some spectral analysis techniques are now available to analyze non-equidistant data [35–37], algorithms available in most software packages remain limited to the case of equidistant data".
+[Reference](https://tbiomed.biomedcentral.com/articles/10.1186/1742-4682-11-16)
 
 ### Relative Amplitude - RA
 A measure of the difference between the most and least active periods, indicating the robustness of the circadian rhythm
