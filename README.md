@@ -14,8 +14,10 @@ Circadian Biology Metrics (CBM) is a repository designed to consolidate essentia
 ### Composite Phase Deviation - CPD
 
 ### Interdaily Stability - IS
+A measure of the stability of an individual's circadian rhythm from day to day.
 
 ### Intradaily Variability - IV
+A measure of the fragmentation of the circadian rhythm within a single day.
 
 ### Circadian Rhythm Index - CRI
 The metric calculated from IV and IS in circadian biology is called the Circadian Rhythm Index (CRI).
@@ -33,7 +35,9 @@ A higher CRI indicates a stronger and more robust circadian rhythm, characterize
 CRI is a useful tool for assessing circadian rhythm health and identifying individuals who may be at risk for circadian rhythm disorders. It can also be used to track the effectiveness of interventions aimed at improving circadian rhythmicity.
 
 ### SRI
+A measure of the regularity of social rhythms, which can influence circadian rhythms and overall health.
 
 ### Cosinor
 
 ### Relative Amplitude - RA
+A measure of the difference between the most and least active periods, indicating the robustness of the circadian rhythm.
