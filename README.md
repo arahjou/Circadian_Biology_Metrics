@@ -8,8 +8,10 @@ Circadian Biology Metrics (CBM) is a repository designed to consolidate essentia
 ## Metics
 
 ### Most Active 10 Hours - M10
+The average activity level during the most active 10 hours of the day, reflecting overall activity and possibly light exposure.
 
 ### Lowest 5 Hours - L5
+The average activity level during the least active 5 hours of the day, typically a measure of rest or sleep quality.
 
 ### Composite Phase Deviation - CPD
 
@@ -42,3 +44,5 @@ A measure of the regularity of social rhythms, which can influence circadian rhy
 ### Relative Amplitude - RA
 A measure of the difference between the most and least active periods, indicating the robustness of the circadian rhythm
 [Reference](https://irispublishers.com/ann/fulltext/rest-activity-circadian-rhythm-and-light-exposure-using-wrist-actigraphy-in-icu-patients.ID.000787.php).
+
+
