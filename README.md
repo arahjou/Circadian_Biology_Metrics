@@ -35,3 +35,5 @@ CRI is a useful tool for assessing circadian rhythm health and identifying indiv
 ### SRI
 
 ### Cosinor
+
+### Relative Amplitude - RA
