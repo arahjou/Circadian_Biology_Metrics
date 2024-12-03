@@ -1,4 +1,4 @@
-Certainly! Below is a Python code that fits a cosinor model to data consisting of date-time and signal values. The cosinor model is commonly used to analyze periodic (e.g., circadian) rhythms in biological data.
+Below is a Python code that fits a cosinor model to data consisting of date-time and signal values. The cosinor model is commonly used to analyze periodic (e.g., circadian) rhythms in biological data.
 
 ```python
 import numpy as np
@@ -111,6 +111,147 @@ plt.show()
 
 **Note:** This code fits the cosinor model by estimating all parameters, including the angular frequency (`omega`). If you prefer to fix the period (and thus `omega`), you can modify the `cosinor` function and remove `omega` from the parameters to be estimated.
 
+Certainly! Let’s break down the mathematics behind the **cosinor model** and the Python code step by step.
+
 ---
 
-This script should provide a solid foundation for fitting a cosinor model to your date-time and signal data in Python. Adjust the initial guesses and bounds as necessary for your specific dataset.
+### **What is a Cosinor Model?**
+
+The **cosinor model** is a mathematical way to describe periodic (cyclical) data, such as rhythms that repeat over a specific period (e.g., daily, monthly, yearly). It uses a cosine wave to model the data.
+
+#### **The Mathematical Formula**
+
+\[
+y(t) = M + A \cdot \cos(\omega \cdot t + \phi)
+\]
+
+Where:
+- **\( y(t) \)**: The signal value at time \( t \).
+- **\( M \) (Mesor)**: The mean level around which the oscillation occurs (baseline or midline).
+- **\( A \) (Amplitude)**: The height of the wave, or how much the signal deviates from the mean level \( M \).
+- **\( \omega \) (Angular Frequency)**: Controls the period (how long it takes to complete one cycle). It's related to the period (\( P \)) as:
+  \[
+  \omega = \frac{2\pi}{P}
+  \]
+  For example, if the rhythm repeats every 24 hours (circadian rhythm), \( \omega = \frac{2\pi}{24} \).
+- **\( \phi \) (Acrophase)**: The phase shift, which determines when the peak (or trough) occurs within a cycle.
+
+---
+
+### **Steps in the Code**
+
+#### 1. **Define the Cosinor Function**
+This step implements the mathematical formula:
+```python
+def cosinor(t, M, A, omega, phi):
+    return M + A * np.cos(omega * t + phi)
+```
+Here, `t` is the time variable, and \( M, A, \omega, \phi \) are the parameters we want to estimate.
+
+---
+
+#### 2. **Prepare the Data**
+To fit the model, we need:
+- **Time as a numerical variable (`t`)**:
+  - Convert the `datetime` column into elapsed time in hours from the start.
+  - Example: If the first timestamp is 08:00, then 09:00 is `1 hour`, 10:00 is `2 hours`, and so on.
+- **Signal values (`y`)**: The measured values you want to model.
+
+This is done here:
+```python
+data['t'] = (data['datetime'] - t0).dt.total_seconds() / 3600.0  # Time in hours
+t = data['t'].values
+y = data['signal'].values
+```
+
+---
+
+#### 3. **Initial Guesses for Parameters**
+Fitting the model requires good starting guesses for the parameters:
+- **\( M \):** Use the mean of the signal values as an initial guess.
+- **\( A \):** Use half the range of the signal values (\( \frac{\text{max} - \text{min}}{2} \)).
+- **\( \omega \):** Use \( \frac{2\pi}{P} \), where \( P \) is the expected period. For example, for a daily rhythm, \( P = 24 \), so \( \omega = \frac{2\pi}{24} \).
+- **\( \phi \):** Start with 0 (no phase shift).
+
+```python
+M0 = np.mean(y)
+A0 = (np.max(y) - np.min(y)) / 2.0
+omega0 = 2 * np.pi / 24  # Assuming a 24-hour period
+phi0 = 0.0
+initial_guess = [M0, A0, omega0, phi0]
+```
+
+---
+
+#### 4. **Fit the Model**
+The `curve_fit` function from `scipy.optimize` estimates the best-fit parameters by minimizing the difference between the observed data (`y`) and the model’s predicted values:
+```python
+params, covariance = curve_fit(cosinor, t, y, p0=initial_guess, bounds=(lower_bounds, upper_bounds))
+```
+- **`params`** contains the estimated values for \( M, A, \omega, \phi \).
+- **`covariance`** gives the uncertainties of these estimates.
+
+---
+
+#### 5. **Interpret the Results**
+Extract the fitted parameters:
+```python
+M_fit, A_fit, omega_fit, phi_fit = params
+```
+- Compute the period:
+  \[
+  P = \frac{2\pi}{\omega}
+  \]
+  This tells you how long the cycle takes to complete one oscillation.
+
+---
+
+#### 6. **Generate the Fitted Curve**
+To visualize the fit, create a smooth curve using the fitted parameters:
+```python
+t_fit = np.linspace(np.min(t), np.max(t), 1000)
+y_fit = cosinor(t_fit, M_fit, A_fit, omega_fit, phi_fit)
+```
+This generates model predictions over a range of time values.
+
+---
+
+#### 7. **Plot the Results**
+Finally, plot the original data and the fitted curve to see how well the model matches the data:
+```python
+plt.scatter(t, y, label='Data', color='blue')
+plt.plot(t_fit, y_fit, label='Cosinor Fit', color='red')
+```
+
+---
+
+### **Mathematical Understanding of the Fitted Parameters**
+1. **Mesor (\( M \))**:
+   - Represents the average value of the oscillating signal.
+
+2. **Amplitude (\( A \))**:
+   - Indicates the strength or magnitude of the oscillation. Larger \( A \) means the signal fluctuates more significantly around the mesor.
+
+3. **Angular Frequency (\( \omega \))**:
+   - Tells you how quickly the oscillation repeats. For a 24-hour rhythm:
+     \[
+     \omega = \frac{2\pi}{24}
+     \]
+
+4. **Acrophase (\( \phi \))**:
+   - Determines the timing of the peak within a cycle. A positive \( \phi \) shifts the peak to the right; a negative \( \phi \) shifts it to the left.
+
+---
+
+### **Summary**
+
+1. The **cosinor model** fits a cosine wave to periodic data using the formula \( y(t) = M + A \cdot \cos(\omega \cdot t + \phi) \).
+2. The parameters (\( M, A, \omega, \phi \)) are estimated by minimizing the difference between the model and the observed data.
+3. The code prepares the data, provides initial parameter guesses, fits the model using `curve_fit`, and visualizes the results.
+4. The fitted parameters give insights into the rhythm:
+   - **Mesor (\( M \))**: Average level.
+   - **Amplitude (\( A \))**: Strength of oscillation.
+   - **Frequency (\( \omega \))**: Speed of oscillation.
+   - **Acrophase (\( \phi \))**: Timing of the peak.
+
+This is a practical and mathematical way to study rhythms like daily (circadian) patterns.
